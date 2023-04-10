@@ -27,7 +27,7 @@ namespace Dane
             {
                 pX = rnd.NextDouble();
             } while (pX == 0);
-            double pY = Math.Sqrt(2 - (pX * pX));
+            double pY = Math.Sqrt(2 - (pX + pX));
             if (pY > 1 )
             { 
                 pY = - pY + 1; 
@@ -37,30 +37,48 @@ namespace Dane
             predkoscY = pY;
         }
 
-
-
-        static public void main()
+        public double X
         {
-            Random rnd = new Random();
-            double pX = 0;
-            double pY;
-            
-            for (int i = 0; i < 100; i++)
-            {
-                do
-                {
-                    pX = rnd.NextDouble();
-                } while (pX == 0);
-                pY = Math.Sqrt(2 - (pX + pX));
-                if (pY > 1)
-                {
-                    pY = - pY +1;
-                }
-                Console.WriteLine("PX" + pX);
-                Console.WriteLine("PY" + pY);
-
-            }
-            
+            get { return x; }
+            set { x = value; }
         }
+
+        public double Y
+        {
+            get { return y; }
+            set { y = value; }
+        }
+
+        public double Waga
+        {
+            get { return waga; }
+            set { waga = value; }
+        }
+
+        public double Promien
+        {
+            get { return promien; }
+            set { promien = value; }
+        }
+
+        public double PredkoscX
+        {
+            get { return predkoscX; }
+            set { predkoscX = value; }
+        }
+
+        public double PredkoscY
+        {
+            get { return predkoscY; }
+            set { predkoscY = value; }  
+        }
+
+        public void ruch()
+        {
+            X += predkoscX;
+            Y += predkoscY;
+        }
+
+        
     }
 }
