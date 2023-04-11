@@ -70,7 +70,7 @@ namespace Dane
 
             public override List<ball> getBalls()
             {
-                return this.field.Balls;
+                return this.Field.Balls;
             }
         }
     }
