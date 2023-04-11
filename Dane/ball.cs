@@ -53,7 +53,7 @@ namespace Dane
                 if (x != value)
                 {
                     x = value;
-                    OnPropertyChanged(nameof(x));
+                    OnPropertyChanged(nameof(X));
                 }
             }
         }
