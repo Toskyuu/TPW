@@ -7,8 +7,10 @@
     <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
+
+
   <ItemGroup>
-    <Page Include="App.xaml" />
+    <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
 
   <ItemGroup>
