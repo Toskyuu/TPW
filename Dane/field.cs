@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dane
 {
-    internal class field : INotifyPropertyChanged
+    public class field : INotifyPropertyChanged
     {
         private double height;
         private double width;
