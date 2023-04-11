@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace Dane
 {
-    public abstract class abstractDataApi
+    public abstract class AbstractDataApi
     {
         public abstract void CreateField(int height, int width, int numberOfBalls);
-        public abstract List<ball> getBalls();
+        public abstract List<ball> GetBalls();
         public abstract void StopUpdating();
-        public abstract bool isUpdating();
-        public abstract field field { get; }   
+        public abstract bool IsUpdating();
+        public abstract field Field { get; }   
 
-        public static abstractDataApi API()
+        public static AbstractDataApi API()
         { 
             return new DataApi();
         }
 
-        internal class DataApi : abstractDataApi {
-            private field Field;
+        internal class DataApi : AbstractDataApi {
+            private field field;
             private bool updating;
-            private readonly object locked = new object();
+            private readonly object locked = new();
 
             public bool Updating
             {
@@ -30,16 +30,16 @@ namespace Dane
                 set { updating = value; }
             }
 
-            public override field field
+            public override field Field
             {
                 get { return Field; }
             }
 
             public override void CreateField(int height, int width, int numberOfBalls)
             {
-                this.Field = new field(height, width, numberOfBalls);
+                this.field = new field(height, width, numberOfBalls);
                 this.Updating = true;
-                List<ball> balls = getBalls();
+                List<ball> balls = GetBalls();
 
                 foreach (ball ball in balls)
                 {
@@ -63,14 +63,14 @@ namespace Dane
                 this.Updating = false;
             }
 
-            public override bool isUpdating()
+            public override bool IsUpdating()
             {
                 return this.Updating;
             }
 
-            public override List<ball> getBalls()
+            public override List<ball> GetBalls()
             {
-                return this.Field.Balls;
+                return this.field.Balls;
             }
         }
     }
