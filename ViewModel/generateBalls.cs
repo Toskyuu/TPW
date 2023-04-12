@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using Model;
 
 namespace ViewModel
@@ -29,7 +30,7 @@ namespace ViewModel
         public generateBalls()
         {
             startAnimation = new startAnimation(this);
-            this.api = new AbstractModelApi.ModelApi();
+            this.api = new AbstractModelApi.API();
         }
 
         public ObservableCollection<ball> Balls

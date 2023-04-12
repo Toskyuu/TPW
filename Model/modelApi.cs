@@ -10,7 +10,7 @@ namespace Model
 {
     public abstract class AbstractModelApi
     {
-        public static AbstractModelApi API(AbstractLogicApi abstractLogicApi = null)
+        public static AbstractModelApi Api(AbstractLogicApi abstractLogicApi = null)
         {
             return new ModelApi();
         }
