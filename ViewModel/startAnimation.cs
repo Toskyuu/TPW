@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Dane;
+using Logika;
+using Model;
 
 namespace ViewModel
 {
     public class startAnimation : ICommand
     {
         generateBalls generateBalls;
-
         public startAnimation(generateBalls generateBalls)
         {
             this.generateBalls = generateBalls;

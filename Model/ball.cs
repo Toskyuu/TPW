@@ -14,7 +14,6 @@ namespace Model
         private int x;
         private int y;
         private int radius;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)

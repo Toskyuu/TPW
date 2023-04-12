@@ -10,20 +10,20 @@ namespace Model
 {
     public abstract class AbstractModelApi
     {
-        public static AbstractModelApi Api(AbstractLogicApi abstractLogicApi = null)
+        public static AbstractModelApi API(AbstractLogicApi abstractLogicApi = null)
         {
             return new ModelApi();
         }
-        public abstract ObservableCollection<ball> GetBalls();
 
-        public abstract void StartUpdating(int numberOfBalls);
+        public abstract void StartUpdating(int amountOfBalls);
         public abstract void StopUpdating();
         public abstract bool IsUpdating();
+        public abstract ObservableCollection<ball> GetBalls();
 
 
         public class ModelApi : AbstractModelApi
         {
-            private ObservableCollection<ball> balls = new();
+            private ObservableCollection<ball> balls = new ObservableCollection<ball>();
             private AbstractLogicApi logicApi = AbstractLogicApi.API(null);
 
             public ModelApi(AbstractLogicApi abstractLogicApi = null)
@@ -39,9 +39,24 @@ namespace Model
             }
 
             public ObservableCollection<ball> Balls
-            {
-                get { return balls; }
+            { 
+                get { return balls; } 
                 set { balls = value; }
+            }
+
+            public override void StartUpdating(int amountOfBalls)
+            {
+                logicApi.StartUpdating(500, 300, amountOfBalls);
+            }
+
+            public override void StopUpdating()
+            {
+                logicApi.StopUpdating();
+            }
+
+            public override bool IsUpdating() 
+            {
+                return logicApi.IsUpdating();
             }
 
             public override ObservableCollection<ball> GetBalls()
@@ -54,22 +69,6 @@ namespace Model
                 }
                 return Balls;
             }
-
-            public override void StartUpdating(int numberOfBalls)
-            {
-                logicApi.StartUpdating(500, 300, numberOfBalls);
-            }
-
-            public override void StopUpdating()
-            {
-                logicApi.StopUpdating();
-            }
-
-            public override bool IsUpdating()
-            {
-                return logicApi.IsUpdating();
-            }
-
 
         }
     }

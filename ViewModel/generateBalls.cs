@@ -12,7 +12,7 @@ namespace ViewModel
 {
     public class generateBalls : INotifyPropertyChanged
     {
-        private ObservableCollection<ball> balls = new();
+        private ObservableCollection<ball> balls = new ObservableCollection<ball>();
         private AbstractModelApi api;
         private int numberOfBalls;
 
