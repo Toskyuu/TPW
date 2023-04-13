@@ -43,7 +43,7 @@ namespace Dane
 
                 foreach (Ball ball in balls)
                 {
-                    Thread thread = new Thread(() =>
+                    Task task = new Task(async () =>
                     {
                         while (updating)
                         {
@@ -51,10 +51,10 @@ namespace Dane
                             {
                                 ball.changePosition(ball.X + ball.XSpeed, ball.Y + ball.YSpeed);
                             }
-                            Thread.Sleep(10);
+                            await Task.Delay(3);    
                         }
                     });
-                    thread.Start();
+                    task.Start();
                 }
             }
 

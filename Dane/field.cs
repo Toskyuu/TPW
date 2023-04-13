@@ -66,11 +66,11 @@ namespace Dane
 
             while (xSpeed == 0)
             {
-                xSpeed = r.Next(-1, 2);
+                xSpeed = r.Next(-1, 1);
             }
             while(ySpeed == 0)
             {
-                ySpeed = r.Next(-1, 2);
+                ySpeed = r.Next(-1, 1);
             }
 
             Ball createdBall = new Ball(x, y, radius);
