@@ -18,12 +18,12 @@ namespace Model
         public abstract void StartUpdating(int amountOfBalls);
         public abstract void StopUpdating();
         public abstract bool IsUpdating();
-        public abstract ObservableCollection<ball> GetBalls();
+        public abstract ObservableCollection<Ball> GetBalls();
 
 
         public class ModelApi : AbstractModelApi
         {
-            private ObservableCollection<ball> balls = new ObservableCollection<ball>();
+            private ObservableCollection<Ball> balls = new();
             private AbstractLogicApi logicApi = AbstractLogicApi.API(null);
 
             public ModelApi(AbstractLogicApi abstractLogicApi = null)
@@ -38,7 +38,7 @@ namespace Model
                 }
             }
 
-            public ObservableCollection<ball> Balls
+            public ObservableCollection<Ball> Balls
             { 
                 get { return balls; } 
                 set { balls = value; }
@@ -46,7 +46,7 @@ namespace Model
 
             public override void StartUpdating(int amountOfBalls)
             {
-                logicApi.StartUpdating(500, 300, amountOfBalls);
+                logicApi.StartUpdating(600, 750, amountOfBalls);
             }
 
             public override void StopUpdating()
@@ -59,13 +59,13 @@ namespace Model
                 return logicApi.IsUpdating();
             }
 
-            public override ObservableCollection<ball> GetBalls()
+            public override ObservableCollection<Ball> GetBalls()
             {
-                List<ballLogic> logicBalls = logicApi.GetBalls();
+                List<BallLogic> logicBalls = logicApi.GetBalls();
                 Balls.Clear();
-                foreach (ballLogic ball in logicBalls)
+                foreach (BallLogic ball in logicBalls)
                 {
-                    Balls.Add(new ball(ball));
+                    Balls.Add(new Ball(ball));
                 }
                 return Balls;
             }

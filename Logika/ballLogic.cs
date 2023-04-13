@@ -8,10 +8,10 @@ using Dane;
 
 namespace Logika
 {
-    public class ballLogic : INotifyPropertyChanged
+    public class BallLogic : INotifyPropertyChanged
     {
-        private ball ball;
-        public ballLogic(ball ball)
+        private Ball ball;
+        public BallLogic(Ball ball)
         {
             this.ball = ball;
             this.ball.PropertyChanged += Update;

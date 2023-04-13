@@ -9,10 +9,10 @@ namespace Dane
     public abstract class AbstractDataApi
     {
         public abstract void CreateField(int height, int width, int numberOfBalls);
-        public abstract List<ball> GetBalls();
+        public abstract List<Ball> GetBalls();
         public abstract void StopUpdating();
         public abstract bool IsUpdating();
-        public abstract field Field { get; }   
+        public abstract Field Field { get; }   
 
         public static AbstractDataApi API()
         { 
@@ -20,7 +20,7 @@ namespace Dane
         }
 
         internal class DataApi : AbstractDataApi {
-            private field field;
+            private Field field;
             private bool updating;
             private readonly object locked = new();
 
@@ -30,18 +30,18 @@ namespace Dane
                 set { updating = value; }
             }
 
-            public override field Field
+            public override Field Field
             {
-                get { return Field; }
+                get { return field; }
             }
 
             public override void CreateField(int height, int width, int numberOfBalls)
             {
-                this.field = new field(height, width, numberOfBalls);
+                this.field = new Field(height, width, numberOfBalls);
                 this.Updating = true;
-                List<ball> balls = GetBalls();
+                List<Ball> balls = GetBalls();
 
-                foreach (ball ball in balls)
+                foreach (Ball ball in balls)
                 {
                     Thread thread = new Thread(() =>
                     {
@@ -68,7 +68,7 @@ namespace Dane
                 return this.Updating;
             }
 
-            public override List<ball> GetBalls()
+            public override List<Ball> GetBalls()
             {
                 return this.field.Balls;
             }

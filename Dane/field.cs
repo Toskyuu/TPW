@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 
 namespace Dane
 {
-    public class field : INotifyPropertyChanged
+    public class Field : INotifyPropertyChanged
     {
         private double height;
         private double width;
-        private readonly List<ball> balls = new List<ball>();
+        private readonly List<Ball> balls = new();
 
-        public field(double height, double width, int numberOfBalls)
+        public Field(double height, double width, int numberOfBalls)
         {
             this.height = height;
             this.width = width;
-            CreateBalls(numberOfBalls, 20);
+            CreateBalls(numberOfBalls, 50);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -56,16 +56,24 @@ namespace Dane
             }
         }
 
-        public ball CreateBall(int radius)
+        public Ball CreateBall(int radius)
         {
             Random r = new Random();
             int x = r.Next(20, (int)this.Height - 20);
             int y = r.Next(20, (int)this.Width - 20);
+            int xSpeed = 0;
+            int ySpeed = 0;
 
-            int xSpeed = r.Next(-1, 2);
-            int ySpeed = r.Next(-1, 2);
+            while (xSpeed == 0)
+            {
+                xSpeed = r.Next(-1, 2);
+            }
+            while(ySpeed == 0)
+            {
+                ySpeed = r.Next(-1, 2);
+            }
 
-            ball createdBall = new ball(x, y, radius);
+            Ball createdBall = new Ball(x, y, radius);
 
             createdBall.setSpeed(xSpeed, ySpeed);
             return createdBall;
@@ -78,7 +86,7 @@ namespace Dane
                 this.balls.Add(CreateBall(radius));
             }
         }
-        public List<ball> Balls
+        public List<Ball> Balls
         {
             get { return balls; }
         }

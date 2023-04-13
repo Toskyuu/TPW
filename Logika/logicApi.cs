@@ -10,7 +10,7 @@ namespace Logika
 {
     public abstract class AbstractLogicApi
     {
-        public abstract List<ballLogic> GetBalls();
+        public abstract List<BallLogic> GetBalls();
         public abstract void StartUpdating(int height, int width, int numberOfBalls);
         public abstract void StopUpdating();
         public abstract bool IsUpdating();
@@ -22,7 +22,7 @@ namespace Logika
 
         internal class LogicApi : AbstractLogicApi
         {
-            private List<ballLogic> balls = new();
+            private List<BallLogic> balls = new();
             private AbstractDataApi dataApi;
 
             public LogicApi(AbstractDataApi abstractDataApi = null)
@@ -36,7 +36,7 @@ namespace Logika
                     this.dataApi = abstractDataApi;
                 }
             }
-            public override List<ballLogic> GetBalls()
+            public override List<BallLogic> GetBalls()
             {
                 return this.balls;
             }
@@ -44,9 +44,9 @@ namespace Logika
             public override void StartUpdating(int height, int width, int numberOfBalls)
             {
                 this.dataApi.CreateField(height, width, numberOfBalls);
-                foreach (ball ball in this.dataApi.GetBalls())
+                foreach (Ball ball in this.dataApi.GetBalls())
                 {
-                    this.balls.Add(new ballLogic(ball));
+                    this.balls.Add(new BallLogic(ball));
                     ball.PropertyChanged += CheckCollision;
                 }
             }
@@ -63,14 +63,14 @@ namespace Logika
 
             public void CheckCollision(object sender, PropertyChangedEventArgs e)
             {
-                ball ball = (ball)sender;
+                Ball ball = (Ball)sender;
                 if (e.PropertyName == nameof(ball.X) || e.PropertyName == nameof(ball.Y))
                 {
                     FieldCollision(ball);
                 }
             }
 
-            private void FieldCollision(ball ball)
+            private void FieldCollision(Ball ball)
             {
                 if (ball.X <= 0)
                 {

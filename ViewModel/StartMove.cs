@@ -10,10 +10,10 @@ using Model;
 
 namespace ViewModel
 {
-    public class startAnimation : ICommand
+    public class StartMove : ICommand
     {
-        generateBalls generateBalls;
-        public startAnimation(generateBalls generateBalls)
+        GenerateBalls generateBalls;
+        public StartMove(GenerateBalls generateBalls)
         {
             this.generateBalls = generateBalls;
         }

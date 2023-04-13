@@ -9,7 +9,7 @@ using Logika;
 
 namespace Model
 {
-    public class ball : INotifyPropertyChanged
+    public class Ball : INotifyPropertyChanged
     {
         private int x;
         private int y;
@@ -63,7 +63,7 @@ namespace Model
             }
         }
 
-        public ball(ballLogic ball)
+        public Ball(BallLogic ball)
         {
             this.x = ball.X;
             this.y = ball.Y;
@@ -73,7 +73,7 @@ namespace Model
 
         private void Move(object sender, PropertyChangedEventArgs e)
         {
-            ballLogic ball = (ballLogic)sender;
+            BallLogic ball = (BallLogic)sender;
             if(e.PropertyName == nameof(ball.X)) {
             
             this.X = ball.X;}

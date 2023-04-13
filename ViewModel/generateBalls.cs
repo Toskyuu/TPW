@@ -10,9 +10,9 @@ using Model;
 
 namespace ViewModel
 {
-    public class generateBalls : INotifyPropertyChanged
+    public class GenerateBalls : INotifyPropertyChanged
     {
-        private ObservableCollection<ball> balls = new ObservableCollection<ball>();
+        private ObservableCollection<Ball> balls = new();
         private AbstractModelApi api;
         private int numberOfBalls;
 
@@ -27,13 +27,13 @@ namespace ViewModel
             }
         }
 
-        public generateBalls()
+        public GenerateBalls()
         {
-            startAnimation = new startAnimation(this);
-            this.api = new AbstractModelApi.API();
+            startMove = new StartMove(this);
+            this.api = AbstractModelApi.API();
         }
 
-        public ObservableCollection<ball> Balls
+        public ObservableCollection<Ball> Balls
         {
             get { return balls; }
             set
@@ -61,7 +61,7 @@ namespace ViewModel
         public void StartUpdating()
         {
             this.api.StartUpdating(numberOfBalls);
-            this.balls = api.GetBalls();
+            this.Balls = api.GetBalls();
         }
 
         public void StopUpdating()
@@ -74,7 +74,7 @@ namespace ViewModel
             return this.api.IsUpdating();
         }
 
-        public startAnimation startAnimation { get; set; }
+        public StartMove startMove { get; set; }
 
         
     }
