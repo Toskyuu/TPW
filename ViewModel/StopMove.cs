@@ -10,10 +10,10 @@ using Model;
 
 namespace ViewModel
 {
-    public class StartMove : ICommand
+    public class StopMove : ICommand
     {
         GenerateBalls generateBalls;
-        public StartMove(GenerateBalls generateBalls)
+        public StopMove(GenerateBalls generateBalls)
         {
             this.generateBalls = generateBalls;
         }
@@ -27,11 +27,11 @@ namespace ViewModel
 
         public void Execute(object? parameter)
         {
-            if (!this.generateBalls.IsUpdating())
+            if (this.generateBalls.IsUpdating())
             {
-                this.generateBalls.StartUpdating();
+                this.generateBalls.StopUpdating();
             }
-            
+
         }
     }
 }

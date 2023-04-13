@@ -59,8 +59,8 @@ namespace Dane
         public Ball CreateBall(int radius)
         {
             Random r = new Random();
-            int x = r.Next(20, (int)this.Height - 20);
-            int y = r.Next(20, (int)this.Width - 20);
+            int x = r.Next(20, (int)this.Width - 20);
+            int y = r.Next(20, (int)this.Height - 20);
             int xSpeed = 0;
             int ySpeed = 0;
 

@@ -30,6 +30,7 @@ namespace ViewModel
         public GenerateBalls()
         {
             startMove = new StartMove(this);
+            stopMove = new StopMove(this); 
             this.api = AbstractModelApi.API();
         }
 
@@ -75,8 +76,9 @@ namespace ViewModel
         }
 
         public StartMove startMove { get; set; }
+        public StopMove stopMove { get; set; }
 
-        
+
     }
 
 }
