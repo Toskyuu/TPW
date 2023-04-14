@@ -72,21 +72,22 @@ namespace Logika
 
             private void FieldCollision(Ball ball)
             {
+                Random r = new Random();
                 if (ball.X <= 0)
                 {
-                    ball.setSpeed(1, ball.YSpeed);
+                    ball.setSpeed(r.Next(1,3), ball.YSpeed);
                 }
                 if (ball.Y <= 0)
                 {
-                    ball.setSpeed(ball.XSpeed, 1);
+                    ball.setSpeed(ball.XSpeed, r.Next(1,3));
                 }
                 if (ball.X >= this.dataApi.Field.Width - ball.Radius)
                 {
-                    ball.setSpeed(-1, ball.YSpeed);
+                    ball.setSpeed(r.Next(-3,0), ball.YSpeed);
                 }
                 if (ball.Y >= this.dataApi.Field.Height - ball.Radius)
                 {
-                    ball.setSpeed(ball.XSpeed, -1);
+                    ball.setSpeed(ball.XSpeed, r.Next(-3,0));
                 }
             }
         }
