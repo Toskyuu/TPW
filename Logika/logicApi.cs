@@ -24,6 +24,8 @@ namespace Logika
         {
             private List<BallLogic> balls = new();
             private AbstractDataApi dataApi;
+            private readonly object locked = new object();
+
 
             public LogicApi(AbstractDataApi abstractDataApi = null)
             {
@@ -67,27 +69,67 @@ namespace Logika
                 if (e.PropertyName == nameof(ball.X) || e.PropertyName == nameof(ball.Y))
                 {
                     FieldCollision(ball);
+                    BallCollision(ball);
                 }
             }
 
             private void FieldCollision(Ball ball)
             {
-                Random r = new Random();
                 if (ball.X <= 0)
                 {
-                    ball.setSpeed(r.Next(1,3), ball.YSpeed);
+                    ball.SetSpeed(Math.Abs(ball.XSpeed), ball.YSpeed);
+                    ball.X = 1;
                 }
-                if (ball.Y <= 0)
+                if (ball.Y  <= 0)
                 {
-                    ball.setSpeed(ball.XSpeed, r.Next(1,3));
+                    ball.SetSpeed(ball.XSpeed,Math.Abs(ball.YSpeed));
+                    ball.Y = 1;
                 }
-                if (ball.X >= this.dataApi.Field.Width - ball.Radius)
+                if ((ball.X + ball.Radius) >= this.dataApi.Field.Width )
                 {
-                    ball.setSpeed(r.Next(-3,0), ball.YSpeed);
+                    ball.SetSpeed(-Math.Abs(ball.XSpeed), ball.YSpeed);
+                    ball.X = dataApi.Field.Width - ball.Radius - 1;
                 }
-                if (ball.Y >= this.dataApi.Field.Height - ball.Radius)
+                if ((ball.Y + ball.Radius) >= this.dataApi.Field.Height )
                 {
-                    ball.setSpeed(ball.XSpeed, r.Next(-3,0));
+                    ball.SetSpeed(ball.XSpeed, -Math.Abs(ball.YSpeed));
+                    ball.Y = dataApi.Field.Height - ball.Radius - 1;
+                }
+            }
+
+            private void BallCollision(Ball ball)
+            {
+                foreach (Ball ball2 in dataApi.GetBalls()){
+                    if (ball2 == ball)
+                    {
+                        continue;
+                    }
+
+                    double ballCenterX = ball.X + ball.Radius / 2;
+                    double ball2CenterX = ball2.X + ball2.Radius / 2;
+                    double ballCenterY = ball.Y + ball.Radius / 2;
+                    double ball2CenterY = ball2.Y + ball2.Radius / 2;
+
+                    if (Math.Pow(Math.Pow((ballCenterX + ball.XSpeed) - (ball2CenterX + ball2.XSpeed), 2) + Math.Pow(((ballCenterY + ball.YSpeed) - (ball2CenterY + ball2.YSpeed)), 2),0.5) < ((ball.Radius / 2) + (ball2.Radius / 2)))
+                    {
+                        double newXSpeedForBall2 =
+                            ((ball2.XSpeed * (ball2.Weight - ball.Weight) + (ball.Weight * ball.XSpeed * 2)) /
+                             (ball2.Weight + ball.Weight));
+                        double newXSpeedForBall =
+                            ((ball.XSpeed * (ball.Weight - ball2.Weight) + (ball2.Weight * ball2.XSpeed * 2)) /
+                             (ball.Weight + ball2.Weight));
+                        double newYSpeedForBall2 = 
+                            ((ball2.YSpeed * (ball2.Weight - ball.Weight) + (ball.Weight * ball.YSpeed * 2)) /
+                             (ball2.Weight + ball.Weight));
+                        double newYSpeedForBall = 
+                            ((ball.YSpeed * (ball.Weight - ball2.Weight) + (ball2.Weight * ball2.YSpeed * 2)) /
+                             (ball.Weight + ball2.Weight));
+                        lock (locked)
+                        {
+                            ball.SetSpeed(newXSpeedForBall, newYSpeedForBall);
+                            ball2.SetSpeed(newXSpeedForBall2, newYSpeedForBall2);
+                        }
+                    }
                 }
             }
         }

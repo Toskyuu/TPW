@@ -15,12 +15,13 @@ namespace Tests
         [Test]
         public void _ModelBallTest()
         {
-            Dane.Ball ball = new Dane.Ball(100, 200, 30);
+            Dane.Ball ball = new Dane.Ball(100, 200, 30, 3);
             Logika.BallLogic ballLogic = new Logika.BallLogic(ball);
 
             Assert.AreEqual(ball.X, ballLogic.X);
             Assert.AreEqual(ball.Y, ballLogic.Y);
             Assert.AreEqual(ball.Radius, ballLogic.Radius);
+            Assert.AreEqual(ball.Weight, ballLogic.Weight);
 
 
         }

@@ -11,9 +11,10 @@ namespace Model
 {
     public class Ball : INotifyPropertyChanged
     {
-        private int x;
-        private int y;
-        private int radius;
+        private double x;
+        private double y;
+        private double radius;
+        private double weight;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
@@ -24,7 +25,7 @@ namespace Model
             }
         }
 
-        public int X
+        public double X
         {
             get { return x; }
             set
@@ -37,7 +38,7 @@ namespace Model
             }
         }
 
-        public int Y
+        public double Y
         {
             get { return y; }
             set
@@ -50,7 +51,7 @@ namespace Model
             }
         }
 
-        public int Radius
+        public double Radius
         {
             get { return radius; }
             set
@@ -68,6 +69,7 @@ namespace Model
             this.x = ball.X;
             this.y = ball.Y;
             this.radius = ball.Radius;
+            this.weight = ball.Weight;
             ball.PropertyChanged += Move;
         }
 
@@ -75,9 +77,11 @@ namespace Model
         {
             BallLogic ball = (BallLogic)sender;
             if(e.PropertyName == nameof(ball.X)) {
-            
-            this.X = ball.X;}
-            if(e.PropertyName == nameof(ball.Y)) { this.Y = ball.Y;}
+                this.X = ball.X;
+                
+            }
+            if(e.PropertyName == nameof(ball.Y))
+            { this.Y = ball.Y;}
         }
     }
 }

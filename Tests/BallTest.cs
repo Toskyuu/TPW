@@ -4,7 +4,7 @@ namespace Tests
 {
     public class BallTest
     {
-        Ball ball = new Ball(30, 40, 20);
+        Ball ball = new Ball(30, 40, 20, 5);
         [SetUp]
         public void Setup()
         {
@@ -16,12 +16,13 @@ namespace Tests
             Assert.AreEqual(30, ball.X);
             Assert.AreEqual(40, ball.Y);
             Assert.AreEqual(20, ball.Radius);
+            Assert.AreEqual(5, ball.Weight);
         }
 
         [Test]
         public void SetterTest()
         {
-            ball.setSpeed(2, 3);
+            ball.SetSpeed(2, 3);
             ball.X = 50;
             ball.Y = 60;
             ball.Radius = 30;

@@ -9,15 +9,17 @@ namespace Dane
 {
     public class Field : INotifyPropertyChanged
     {
-        private double height;
-        private double width;
+        private int height;
+        private int width;
         private readonly List<Ball> balls = new();
 
-        public Field(double height, double width, int numberOfBalls)
+        public Field(int height, int width, int numberOfBalls)
         {
             this.height = height;
             this.width = width;
-            CreateBalls(numberOfBalls, 50);
+            Random r = new Random();
+            int radius = r.Next(30, 70);
+            CreateBalls(numberOfBalls, radius);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -30,7 +32,7 @@ namespace Dane
             }
         }
 
-        public double Height
+        public int Height
         {
             get { return height; }
             set
@@ -43,7 +45,7 @@ namespace Dane
             }
         }
 
-        public double Width
+        public int Width
         {
             get { return width; }
             set
@@ -59,10 +61,13 @@ namespace Dane
         public Ball CreateBall(int radius)
         {
             Random r = new Random();
-            int x = r.Next(radius, (int)this.Width - radius);
-            int y = r.Next(radius, (int)this.Height - radius);
-            int xSpeed = 0;
-            int ySpeed = 0;
+            bool valid = true;
+            
+            double x = r.Next(20, (int)this.Width - 20);
+            double y = r.Next(20, (int)this.Height - 20);
+
+            double xSpeed = 0;
+            double ySpeed = 0;
 
             while (xSpeed == 0)
             {
@@ -73,10 +78,10 @@ namespace Dane
                 ySpeed = r.Next(-3, 4);
             }
 
-            int weight = 1;
+            int weight = r.Next(4);
             Ball createdBall = new Ball(x, y, radius, weight);
 
-            createdBall.setSpeed(xSpeed, ySpeed);
+            createdBall.SetSpeed(xSpeed, ySpeed);
             return createdBall;
         }
         public void CreateBalls(int numberOfBalls, int radius)

@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel", "ViewModel\View
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{9708CB26-B6EE-4D46-B794-F31370D8A5C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testy", "Testy\Testy.csproj", "{CE11AC87-5D13-4356-952E-BCC6FA6AF949}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CE11AC87-5D13-4356-952E-BCC6FA6AF949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

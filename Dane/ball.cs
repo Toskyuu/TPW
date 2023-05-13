@@ -9,14 +9,14 @@ namespace Dane
 {
     public class Ball : INotifyPropertyChanged
     {
-        private int x;
-        private int y;
-        private int radius;
-        private int xSpeed;
-        private int ySpeed;
-        private int weight;
+        private double x;
+        private double y;
+        private double radius;
+        private double xSpeed;
+        private double ySpeed;
+        private double weight;
 
-        public Ball(int x, int y, int radius, int weight)
+        public Ball(double x, double y, int radius, int weight)
         {
             this.x = x;
             this.y = y;
@@ -34,7 +34,7 @@ namespace Dane
             }
         }
 
-        public int Radius
+        public double Radius
         {
             get { return radius; }
             set
@@ -47,12 +47,12 @@ namespace Dane
             }
         }
 
-        public int Weight
+        public double Weight
         {
             get { return weight; }
         }
 
-        public int X
+        public double X
         {
             get { return x; }
             set
@@ -65,7 +65,7 @@ namespace Dane
             }
         }
 
-        public int Y
+        public double Y
         {
             get { return y; }
             set
@@ -79,7 +79,7 @@ namespace Dane
         }
 
 
-        public int XSpeed
+        public double XSpeed
         {
             get { return xSpeed; }
             set
@@ -92,7 +92,7 @@ namespace Dane
             }
         }
 
-        public int YSpeed
+        public double YSpeed
         {
             get { return ySpeed; }
             set
@@ -105,14 +105,19 @@ namespace Dane
             }
         }
 
-        public void changePosition(int x, int y)
+        public void changePosition(double x, double y)
         {
             X = x;
             Y = y;
         }
 
-        public void setSpeed(int x, int y)
+        public void SetSpeed(double x, double y)
         {
+            if (x > 20 || y > 20)
+            {
+                x = 1;
+                y = 1;
+            }
             XSpeed = x;
             YSpeed = y;
         }
