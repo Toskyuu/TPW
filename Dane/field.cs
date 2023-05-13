@@ -59,8 +59,8 @@ namespace Dane
         public Ball CreateBall(int radius)
         {
             Random r = new Random();
-            int x = r.Next(20, (int)this.Width - 20);
-            int y = r.Next(20, (int)this.Height - 20);
+            int x = r.Next(radius, (int)this.Width - radius);
+            int y = r.Next(radius, (int)this.Height - radius);
             int xSpeed = 0;
             int ySpeed = 0;
 
@@ -73,7 +73,8 @@ namespace Dane
                 ySpeed = r.Next(-3, 4);
             }
 
-            Ball createdBall = new Ball(x, y, radius);
+            int weight = 1;
+            Ball createdBall = new Ball(x, y, radius, weight);
 
             createdBall.setSpeed(xSpeed, ySpeed);
             return createdBall;

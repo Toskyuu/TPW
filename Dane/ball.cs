@@ -14,12 +14,14 @@ namespace Dane
         private int radius;
         private int xSpeed;
         private int ySpeed;
+        private int weight;
 
-        public Ball(int x, int y, int radius)
+        public Ball(int x, int y, int radius, int weight)
         {
             this.x = x;
             this.y = y;
             this.radius = radius;
+            this.weight = weight;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -43,6 +45,11 @@ namespace Dane
                     OnPropertyChanged(nameof(Radius));
                 }
             }
+        }
+
+        public int Weight
+        {
+            get { return weight; }
         }
 
         public int X
@@ -109,7 +116,5 @@ namespace Dane
             XSpeed = x;
             YSpeed = y;
         }
-
-        
     }
 }
