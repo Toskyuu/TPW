@@ -22,7 +22,7 @@ namespace Dane
         internal class DataApi : AbstractDataApi {
             private Field field;
             private bool updating;
-            private readonly object locked = new();
+            private readonly object positionLock = new();
 
             public bool Updating
             {
@@ -47,7 +47,7 @@ namespace Dane
                     {
                         while (updating)
                         {
-                            lock (locked)
+                            lock (positionLock)
                             {
                                 ball.changePosition(ball.X + ball.XSpeed, ball.Y + ball.YSpeed);
                             }

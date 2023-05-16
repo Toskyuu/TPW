@@ -115,8 +115,8 @@ namespace Dane
         {
             if (x > 20 || y > 20)
             {
-                x = 1;
-                y = 1;
+                x = 2;
+                y = 2;
             }
             XSpeed = x;
             YSpeed = y;

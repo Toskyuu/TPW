@@ -24,7 +24,7 @@ namespace Logika
         {
             private List<BallLogic> balls = new();
             private AbstractDataApi dataApi;
-            private readonly object locked = new object();
+            private readonly object speedLock = new object();
 
 
             public LogicApi(AbstractDataApi abstractDataApi = null)
@@ -124,7 +124,7 @@ namespace Logika
                         double newYSpeedForBall = 
                             ((ball.YSpeed * (ball.Weight - ball2.Weight) + (ball2.Weight * ball2.YSpeed * 2)) /
                              (ball.Weight + ball2.Weight));
-                        lock (locked)
+                        lock (speedLock)
                         {
                             ball.SetSpeed(newXSpeedForBall, newYSpeedForBall);
                             ball2.SetSpeed(newXSpeedForBall2, newYSpeedForBall2);
