@@ -51,7 +51,7 @@ namespace Dane
                             {
                                 ball.changePosition(ball.X + ball.XSpeed, ball.Y + ball.YSpeed);
                             }
-                            await Task.Delay(1);    
+                            await Task.Delay(5);    
                         }
                     });
                     task.Start();

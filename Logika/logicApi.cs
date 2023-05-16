@@ -105,10 +105,10 @@ namespace Logika
                         continue;
                     }
 
-                    double ballCenterX = ball.X + ball.Radius / 2;
+                    double ballCenterX = ball.X + ball.Radius / 2 ;
                     double ball2CenterX = ball2.X + ball2.Radius / 2;
-                    double ballCenterY = ball.Y + ball.Radius / 2;
-                    double ball2CenterY = ball2.Y + ball2.Radius / 2;
+                    double ballCenterY = ball.Y + ball.Radius / 2 ;
+                    double ball2CenterY = ball2.Y + ball2.Radius / 2 ;
 
                     if (Math.Pow(Math.Pow((ballCenterX + ball.XSpeed) - (ball2CenterX + ball2.XSpeed), 2) + Math.Pow(((ballCenterY + ball.YSpeed) - (ball2CenterY + ball2.YSpeed)), 2),0.5) < ((ball.Radius / 2) + (ball2.Radius / 2)))
                     {

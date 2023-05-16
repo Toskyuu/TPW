@@ -18,7 +18,7 @@ namespace Dane
             this.height = height;
             this.width = width;
             Random r = new Random();
-            int radius = r.Next(30, 70);
+            int radius = r.Next(10, 40);
             CreateBalls(numberOfBalls, radius);
         }
 
@@ -63,8 +63,8 @@ namespace Dane
             Random r = new Random();
             bool valid = true;
             
-            double x = r.Next(20, (int)this.Width - 20);
-            double y = r.Next(20, (int)this.Height - 20);
+            double x = r.Next(20, this.Width - 20);
+            double y = r.Next(20, this.Height - 20);
 
             double xSpeed = 0;
             double ySpeed = 0;
@@ -78,7 +78,7 @@ namespace Dane
                 ySpeed = r.Next(-3, 4);
             }
 
-            int weight = r.Next(4);
+            int weight = r.Next(1,3);
             Ball createdBall = new Ball(x, y, radius, weight);
 
             createdBall.SetSpeed(xSpeed, ySpeed);
