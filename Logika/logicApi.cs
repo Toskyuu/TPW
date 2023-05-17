@@ -124,6 +124,7 @@ namespace Logika
                         double newYSpeedForBall = 
                             ((ball.YSpeed * (ball.Weight - ball2.Weight) + (ball2.Weight * ball2.YSpeed * 2)) /
                              (ball.Weight + ball2.Weight));
+                        
                         lock (speedLock)
                         {
                             ball.SetSpeed(newXSpeedForBall, newYSpeedForBall);

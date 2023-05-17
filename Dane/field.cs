@@ -18,7 +18,7 @@ namespace Dane
             this.height = height;
             this.width = width;
             Random r = new Random();
-            int radius = r.Next(10, 40);
+            int radius = 15;
             CreateBalls(numberOfBalls, radius);
         }
 
