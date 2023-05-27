@@ -23,6 +23,7 @@ namespace Dane
             private Field field;
             private bool updating;
             private readonly object positionLock = new();
+            private Logger logger;
 
             public bool Updating
             {
@@ -40,6 +41,7 @@ namespace Dane
                 this.field = new Field(height, width, numberOfBalls);
                 this.Updating = true;
                 List<Ball> balls = GetBalls();
+                logger = new Logger(balls);
 
                 foreach (Ball ball in balls)
                 {
@@ -61,6 +63,7 @@ namespace Dane
             public override void StopUpdating()
             {
                 this.Updating = false;
+                logger.Stop();
             }
 
             public override bool IsUpdating()
